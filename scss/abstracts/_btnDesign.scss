@@ -1,0 +1,29 @@
+@use 'colors' as c;
+
+@mixin btn($bcColor,$color) {
+  display: inline-block;
+  padding: 5px 20px;
+  border-radius: 3px;
+  margin: 3px;
+  background-color: $bcColor;
+  color: $color;
+}
+
+%btnHover {
+  color: c.$logoColor;
+  background-color: c.$headerColor;
+}
+
+.btnPrevious {
+  @include btn(c.$logoColor,c.$headerColor);
+  &:hover {
+    @extend %btnHover;
+  }
+}
+
+.btnNext {
+  @include btn(c.$btnNext,c.$headerColor);
+  &:hover {
+    @extend %btnHover;
+  }
+}

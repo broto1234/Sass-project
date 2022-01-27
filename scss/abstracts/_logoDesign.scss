@@ -1,0 +1,17 @@
+@use 'colors' as c;
+
+
+@mixin logoDesign($bcColor) {
+  background-color: $bcColor;
+  color: c.$headerColor;
+  padding: 0.1rem  0.7rem;
+}
+
+  .firstPart {
+    @include logoDesign(c.$firstColor);
+    padding-right: 0;
+  }
+  .secondPart {
+    @include logoDesign(c.$logoColor);
+    padding-left: 0;
+  }

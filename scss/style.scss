@@ -1,0 +1,118 @@
+@use 'abstracts/setAll';
+@use 'abstracts/colors' as c;
+@use 'abstracts/btnDesign';
+@use 'abstracts/logoDesign';
+
+body {
+  font: {
+    size: 1.2rem;
+    family: Helvetica, sans-serif;
+  }
+  background-color: c.$primary-color;
+}
+
+@mixin display($display, $align, $justify) {
+  display: $display;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+a {
+  text-decoration: none;
+}
+
+@mixin image($width, $height, $bg-image) {
+  width: $width;
+  height: $height;
+  background-image: $bg-image;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@mixin colorSetup($color) {
+  @if $color == big {
+    background-color: c.$secondaryColor;
+  } @else {
+    background-color:  c.$tertiaryColor;
+  }
+ }
+ 
+
+.container {
+  width: 100%;
+  height: 700px;
+  padding: 3rem;
+  @include colorSetup(big);
+  nav {
+    @include display(flex, center, space-between);
+    ul {
+      @include display(flex, center, center);
+      li {
+        list-style-type: none;
+        padding: 0.1rem  0.7rem;
+
+        a {
+          color: #2c3e50;
+        }
+
+        a:hover {
+          color: c.$headerColor;
+        }
+      }
+    }
+  }
+
+  .mainContainer {
+    @include display(flex, center, space-between);
+    margin-top: 3rem;
+    .image {
+      @include image(100%, 400px, url('abstracts/bigImage.png'));
+    }
+    .headingPara {
+      width: 50%;
+      padding: 0 1rem;
+      p {
+        margin: 0.8rem 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:800px){
+  .container {
+    @include colorSetup(small);
+    nav {
+      ul {
+        li {
+          a {
+            color: c.$headerColor;
+          }
+          a:hover {
+            color: c.$logoColor;
+          }
+        }
+      }
+      
+    }
+    
+    .mainContainer {
+      @include display(block, center, center);
+      margin-top: 1rem;
+      .image {
+      @include image(318px, 159px, url('abstracts/smallImage.png'));
+      margin: 0 auto;
+      }
+      .headingPara {
+        width: 100%;
+        padding: 0;
+        margin: 1rem 0;
+        h2, p {
+          color: c.$headerColor;
+        }
+        p {
+          margin: 0.8rem 0;
+        }
+      }
+    }
+  }
+}
